@@ -2,47 +2,61 @@ import { useState } from "react";
 import "./App.css";
 
 function App() {
-  
-  const[count, setCount] = useState(0);
+  // State to manage the counter value
+  const [count, setCount] = useState(0);
 
-  function decreaseHandler() {
-    setCount(count-1);
-  }
-  function increaseHandler() {
-    setCount(count+1);
-  }
+  // Handlers for decrement, increment, and reset
+  const decreaseHandler = () => {
+    setCount((prevCount) => prevCount - 1);
+  };
 
-  function resetHandler() {
+  const increaseHandler = () => {
+    setCount((prevCount) => prevCount + 1);
+  };
+
+  const resetHandler = () => {
     setCount(0);
-  }
+  };
 
   return (
-   <div className="w-[100vw] h-[100vh] flex justify-center items-center bg-[#344151] flex-col gap-10">
+    <div className="w-full h-screen flex flex-col justify-center items-center bg-gradient-to-br from-purple-600 via-pink-500 to-red-500 gap-12 text-white">
+      {/* Title */}
+      <h1 className="text-4xl font-bold animate-pulse">
+        Colorful Counter App
+      </h1>
 
-    
-    <div className="text-[#0398d4] font-medium text-2xl">Increment & Decrement</div>
+      {/* Counter UI */}
+      <div className="bg-white p-6 rounded-lg shadow-2xl flex items-center justify-between gap-6 text-5xl text-[#344151] transform transition-all duration-500 hover:scale-105">
+        {/* Decrement Button */}
+        <button
+          onClick={decreaseHandler}
+          className="bg-gradient-to-tr from-red-400 to-red-600 hover:from-red-500 hover:to-red-700 text-white w-16 h-16 rounded-full flex items-center justify-center shadow-lg transform transition duration-300 hover:scale-110"
+        >
+          -
+        </button>
 
-    <div className="bg-white flex justify-center gap-12 py-3 rounded-sm text-[25px] text-[#344151]">
+        {/* Counter Value */}
+        <div className="font-extrabold text-6xl animate-bounce">
+          {count}
+        </div>
 
-      <button onClick={decreaseHandler} className="border-r-2 text-center w-20 border-[#bfbfbf] text-5xl">
-        -
-      </button>
-      
-      <div className="font-bold gap-12 text-5xl">
-        {count}
+        {/* Increment Button */}
+        <button
+          onClick={increaseHandler}
+          className="bg-gradient-to-tr from-green-400 to-green-600 hover:from-green-500 hover:to-green-700 text-white w-16 h-16 rounded-full flex items-center justify-center shadow-lg transform transition duration-300 hover:scale-110"
+        >
+          +
+        </button>
       </div>
 
-      <button onClick={increaseHandler} className="border-l-2 text-center w-20 border-[#bfbfbf] text-5xl">
-        +
+      {/* Reset Button */}
+      <button
+        onClick={resetHandler}
+        className="bg-gradient-to-r from-blue-400 to-blue-600 hover:from-blue-500 hover:to-blue-700 text-white px-8 py-4 rounded-lg shadow-xl text-lg font-medium transform transition duration-300 hover:scale-110"
+      >
+        Reset
       </button>
-
     </div>
-
-    <button onClick={resetHandler} className="bg-[#0398d4] text-white px-5 py-2 rounded-sm text-lg">
-      Reset
-    </button>
-
-   </div>
   );
 }
 
